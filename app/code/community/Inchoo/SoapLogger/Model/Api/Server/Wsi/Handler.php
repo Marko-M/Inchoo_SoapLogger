@@ -1,0 +1,70 @@
+<?php
+/**
+* Inchoo
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so we can send you a copy immediately.
+*
+* DISCLAIMER
+*
+* Please do not edit or add to this file if you wish to upgrade
+* Magento or this extension to newer versions in the future.
+** Inchoo *give their best to conform to
+* "non-obtrusive, best Magento practices" style of coding.
+* However,* Inchoo *guarantee functional accuracy of
+* specific extension behavior. Additionally we take no responsibility
+* for any possible issue(s) resulting from extension usage.
+* We reserve the full right not to provide any kind of support for our free extensions.
+* Thank you for your understanding.
+*
+* @category Inchoo
+* @package SoapLogger
+* @author Gilles Doge <gilles@antistatique.net>
+* @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+*/
+
+// On case-sensitive system, Autoloading can't load class Mage_Api_Model_Server_WSI_Handler
+// because of *WSI* instead of *Wsi*. See Magento bug #5846
+include 'Mage/Api/Model/Server/Wsi/Handler.php';
+
+class Inchoo_SoapLogger_Model_Api_Server_Wsi_Handler
+extends Mage_Api_Model_Server_WSI_Handler
+{
+     /**
+     * Logs Wsi API call
+     *
+     * @param type $sessionId
+     * @param type $apiPath
+     * @param type $args
+     * @return mixed Null or whatever API call method returns
+     */
+    public function call($sessionId, $apiPath, $args = array())
+    {
+        Mage::helper('inchoo_soaplogger/wsi')
+            ->logPostXml();
+
+        return parent::call($sessionId, $apiPath, $args);
+    }
+
+    /**
+     * Logs Wsi API fault
+     *
+     * @param type $faultName
+     * @param type $resourceName
+     * @param type $customMessage
+     */
+    protected function _fault($faultName, $resourceName = null, $customMessage = null) {
+        Mage::helper('inchoo_soaplogger/wsi')
+            ->logMessage('Fault while processing API call: '.$faultName);
+
+        parent::_fault($faultName, $resourceName, $customMessage);
+    }
+
+}
