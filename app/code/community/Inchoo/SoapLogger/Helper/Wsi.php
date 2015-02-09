@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+<?php
 /**
 * Inchoo
 *
@@ -27,35 +26,11 @@
 *
 * @category Inchoo
 * @package SoapLogger
-* @author Marko Martinović <marko.martinovic@inchoo.net>
-* @copyright Copyright (c) Inchoo (http://inchoo.net/)
+* @author Gilles Doge <gilles@antistatique.net>
 * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
 */
--->
 
-<config>
-    <modules>
-        <Inchoo_SoapLogger>
-            <version>1.0.0</version>
-        </Inchoo_SoapLogger>
-    </modules>
-    <global>
-        <models>
-            <api>
-                <rewrite>
-                    <server_handler>Inchoo_SoapLogger_Model_Api_Server_Handler</server_handler>
-                    <server_v2_handler>Inchoo_SoapLogger_Model_Api_Server_V2_Handler</server_v2_handler>
-                    <server_wsi_handler>Inchoo_SoapLogger_Model_Api_Server_Wsi_Handler</server_wsi_handler>
-                </rewrite>
-            </api>
-            <inchoo_soaplogger>
-                <class>Inchoo_SoapLogger_Model</class>
-            </inchoo_soaplogger>
-        </models>
-        <helpers>
-            <inchoo_soaplogger>
-                <class>Inchoo_SoapLogger_Helper</class>
-            </inchoo_soaplogger>
-        </helpers>
-    </global>
-</config>
+class Inchoo_SoapLogger_Helper_Wsi extends Inchoo_SoapLogger_Helper_Data
+{
+    protected $logFileName = 'wsi_soap.log';
+}
