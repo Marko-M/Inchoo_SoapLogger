@@ -52,6 +52,7 @@
                 <rewrite>
                     <server_handler>Inchoo_SoapLogger_Model_Api_Server_Handler</server_handler>
                     <server_v2_handler>Inchoo_SoapLogger_Model_Api_Server_V2_Handler</server_v2_handler>
+                    <server_wsi_handler>Inchoo_SoapLogger_Model_Api_Server_Wsi_Handler</server_wsi_handler>
                 </rewrite>
             </api>
             <inchoo_soaplogger>
