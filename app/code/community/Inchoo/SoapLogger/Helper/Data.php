@@ -71,7 +71,7 @@ class Inchoo_SoapLogger_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * @return bool
      */
-    private function _isSoapLoggingEnabled()
+    protected function _isSoapLoggingEnabled()
     {
         return (bool)Mage::getStoreConfig('dev/log/soaplog_active');
     }
