@@ -1,0 +1,12 @@
+{
+    "name": "marko-m/inchoo_soaplogger",
+    "type": "magento-module",
+    "license": "OSL-3.0",
+    "description": "Magento extension for logging SOAP V1 and V2 API calls.",
+    "authors": [
+        {
+            "name": "Marko Martinović",
+            "email": "marko.martinovic@inchoo.net"
+        }
+    ]
+}
