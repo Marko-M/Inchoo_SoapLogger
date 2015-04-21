@@ -55,13 +55,24 @@ class Inchoo_SoapLogger_Helper_Data extends Mage_Core_Helper_Abstract
             }
         }
     }
-
+    
     public function logMessage($message)
     {
-        Mage::log(
-            $message,
-            null,
-            $this->logFileName
-        );
+        if($this->_isSoapLoggingEnabled())
+        {
+            Mage::log(
+                $message,
+                null,
+                $this->logFileName
+            );
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    private function _isSoapLoggingEnabled()
+    {
+        return (bool)Mage::getStoreConfig('dev/log/soaplog_active');
     }
 }
